@@ -1,1 +1,1 @@
-# Website_Technical_Board_IITG
+# Technical-Board-Website

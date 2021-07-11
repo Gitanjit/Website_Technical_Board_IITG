@@ -1,0 +1,46 @@
+<%- include("../partials/header.ejs") %> 
+<h1 class="text-3xl text-black pb-6">Add Announcements</h1>
+
+<div class="flex flex-wrap justify-center">
+    <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+        <p class="text-xl pb-6 flex items-center">
+            <i class="fas fa-list mr-3"></i> Add Announcements
+        </p>
+        <div class="leading-loose">
+            <form class="p-10 bg-white rounded shadow-xl" action="/tech/admin/announcement" method="POST" enctype="multipart/form-data">
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="title">Title</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="title" type="text" name="title" placeholder="Title">
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="club">Club Name</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="club" type="text" name="club" placeholder="Club Name">
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="description">Description</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="description" type="text" name="description" placeholder="Description">
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="imp">Important</label>
+                    <input class="mr-2" id="imp" type="checkbox" name="imp">
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="link">Link</label>
+                    <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="link" type="text" name="link" placeholder="Link">
+                </div>
+                <div class="mt-2">
+                    <label class="block text-sm text-gray-600" for="pic">Announcement Image</label>
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="pic"
+                        name="pic" placeholder="image url" required></input>
+                </div>
+                <div class="mt-6">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Add</button>
+                </div>
+                <div class="mt-2">
+                    <a class="hover:text-blue-500" href="/tech/admin/announcement">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer.ejs") %> 

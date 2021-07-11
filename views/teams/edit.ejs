@@ -1,0 +1,57 @@
+<%- include("../partials/header.ejs") %>
+
+    <h1 class="text-3xl text-black pb-6">Edit Teams</h1>
+
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
+            <p class="text-xl pb-6 flex items-center">
+                <i class="fas fa-list mr-3"></i> Edit Teams
+            </p>
+            <div class="leading-loose">
+                <form class="p-10 bg-white rounded shadow-xl"
+                    action="/tech/admin/team/<%= member.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Member Name</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text" name="name" value="<%= member.name %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="post">Position</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="post" type="text" name="post" value="<%= member.post %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="priority_number">Priority Number</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="priority_number" type="text" name="priority_number" value="<%= member.priority_number %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="contactNo">Contact No</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contactNo" type="text" name="contactNo" value="<%= member.contactNo %>" required></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="year">Tenure</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="year" type="text" name="year" value="<%= member.year %>" required></input>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="email">Email Address</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="email" type="email" name="email" value="<%= member.email %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="linkedin">LinkedIn Link</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="linkedin" type="text" name="linkedin" value="<%= member.linkedin %>" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="image">Profile Image</label>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" type="file" id="image" name="image" placeholder="image url"></input>
+                    </div>
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Edit</button>
+                    </div>
+                    <div class="mt-2">
+                        <a class="hover:text-blue-500" href="/tech/admin/team">Go Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>

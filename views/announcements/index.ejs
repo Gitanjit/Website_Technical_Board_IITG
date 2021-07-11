@@ -1,0 +1,56 @@
+<%- include("../partials/header.ejs") %> 
+<h1 class="text-3xl text-black pb-6">Announcements</h1>
+<div class="mt-6">
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/tech/admin/announcement/add">Add Announcements</a>
+</div>
+<div class="w-auto mt-6 overflow-auto">
+    <div class="bg-white">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Club Name</td>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
+                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Description</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Important</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Link</td>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Image</td>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Edit</td>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Delete</td>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700" id="myMenu">
+                    <%announcements.forEach((announcement,i)=>{ if(i%2){%>
+                            <tr class="bg-gray-200">
+                        <%}else{%>
+                            <tr>
+                        <%}%>
+                            <td class="text-left py-3 px-4"><%=  announcement.creation.getDate()+'/'+(announcement.creation.getMonth()+1)+'/'+announcement.creation.getFullYear() %></td>
+                            <td class="text-left py-3 px-4"><%= announcement.club %></td>
+                            <td class="text-left py-3 px-4"><%= announcement.title %></td>
+                            <td class="w-1/3 text-left py-3 px-4"><%= announcement.description.substring(0, 120) + "..." %></td>
+                            <td class="text-left py-3 px-4"><%= announcement.important ? "YES" : "NO" %></td>
+                            <td class="text-left py-3 px-4">
+                                <a class="hover:text-blue-500" href="<%= announcement.link %>" target="_blank">View</a>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" style="height: 100px;">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 w-10 h-10">
+                                        <img class="w-full h-full "
+                                            src="/tech/uploads/announcement/<%= announcement.pic %>" alt="img"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/tech/admin/announcement/<%=announcement.id%>">Edit</a></td>
+                            <td class="text-left py-3 px-4"><form class="mx-2" action="/tech/admin/announcement/<%=announcement.id%>?_method=DELETE" method="POST"><button class="hover:text-red-500">Delete</button></form></td>
+                           
+                        </tr>
+                    <% })%>
+                        
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %> 
+

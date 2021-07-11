@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta property="og:title" content="Technical Board">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="/tech/images/tblogo.svg">
+    <link href="https://fonts.googleapis.com/css?family=Mulish" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/tech/css/tailwind.min.css" />
+    <link rel="stylesheet" href="/tech/css/styles.css" />
+    <title>Technical Board - IIT Guwahati</title>
+    <link rel="icon" href="/tech/images/tblogo.svg" type="image/icon type" />
+    <script>
+        if (localStorage.theme === 'dark' || (!'theme' in localStorage && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.querySelector('html').classList.add('dark')
+        } else if (localStorage.theme === 'dark') {
+            document.querySelector('html').classList.add('dark')
+        }
+      </script>
+    <style>
+        .maxh {
+            max-height: 560px;
+        }
+        .maxnotice {
+            max-height: 440px;
+        }
+        @media only screen and (max-width: 420px) {
+            .maxh {
+                max-height: 930px;
+            }
+        }
+        .navtab {
+            display: inline-block;
+        }
+        
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+      
+        .sticky + .content {
+            padding-top: 60px;
+        }
+        .galwrapper {
+    
+            width: 100%;
+            overflow-x:scroll;
+            white-space: nowrap;
+            float:left;
+            position: relative;
+        }
+        
+        .galwrapper .item {
+            display: inline-block;
+            
+        
+        }
+        .galwrapper .item img {
+            max-height: 100vh;
+            max-width:max-content;
+        }
+
+        ::-webkit-scrollbar {
+  width: 6px;
+  opacity: 0.5;
+}
+
+/* Track */
+::-webkit-scrollbar-track { 
+  opacity: 0.5;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightblue ; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue; 
+}
+        
+
+
+
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+        
+        div.scrollmenu {
+            background-color: #333;
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        div.scrollmenu a:hover {
+            background-color: #777;
+        }
+        div.scrollmenu button {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        div.scrollmenu button:hover {
+            background-color: #777;
+        }
+
+    </style>
+</head>
+
+<body>
+        <%- include("./partials/nav.ejs") %>
+        <%- include("./partials/home.ejs") %>
+        <%- include("./partials/club.ejs") %>
+        <%- include("./partials/event.ejs") %>
+        <%- include("./partials/team.ejs") %>
+        <%- include("./partials/footer.ejs") %>
+
+
+        <!-- Compiled and minified Materialize JS -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+        <script src="/tech/js/nav.js"></script>
+        <script src="/tech/js/all.min.js"></script>
+        <script src="/tech/js/announce.js"></script>
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+            
+            function myFunction() {
+                if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+                } else {
+                navbar.classList.remove("sticky");
+                }
+            }
+
+            //Get current selected Tenure
+            var tenureButton = document.querySelectorAll('.year-button');
+            var selectedTenure = tenureButton[0].innerText;
+            var newstr = "";
+            for( var i = 0; i < selectedTenure.length; i++ ) 
+                if( !(selectedTenure[i] == '\n' || selectedTenure[i] == '\r') )
+                    newstr += selectedTenure[i];
+            selectedTenure = newstr.split(" ").join("");
+
+            var alumniCards = document.querySelectorAll('.alumni-card');
+
+            alumniCards.forEach(card => {
+                var text = card.children[0].children[1].children[2].innerText.split(" ").join("").split("\n").join("");
+                if(text == selectedTenure){
+                    if(card.classList.contains('hidden')){
+                        card.classList.remove('hidden');
+                    }
+                } else {
+                    if(!card.classList.contains('hidden')) {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+
+            tenureButton.forEach(button => {
+                button.addEventListener('click', () => {
+                    var buttonText = button.innerText.split(" ").join("").split("\n").join("");
+                    selectedTenure = buttonText;
+                    alumniCards.forEach(card => {
+                        var text = card.children[0].children[1].children[2].innerText.split(" ").join("").split("\n").join("");
+                        if(text == selectedTenure){
+                            if(card.classList.contains('hidden')){
+                                card.classList.remove('hidden');
+                            }
+                        } else {
+                            if(!card.classList.contains('hidden')) {
+                                card.classList.add('hidden');
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+         <script>
+            const tabs = document.querySelectorAll(".tabs");
+        const tab = document.querySelectorAll(".tab");
+        const panel = document.querySelectorAll(".tab-content");
+        
+        function onTabClick(event) {
+        
+          // deactivate existing active tabs and panel
+        
+          for (let i = 0; i < tab.length; i++) {
+            tab[i].classList.remove("active");
+          }
+        
+          for (let i = 0; i < panel.length; i++) {
+            panel[i].classList.remove("active");
+          }
+        
+        
+          // activate new tabs and panel
+          event.target.classList.add('active');
+          let classString = event.target.getAttribute('data-target');
+          console.log(classString);
+          document.getElementById('panels').getElementsByClassName(classString)[0].classList.add("active");
+        }
+        
+        for (let i = 0; i < tab.length; i++) {
+          tab[i].addEventListener('click', onTabClick, false);
+        }
+          </script>
+              
+                                            
+                                            
+</body>
+
+</html>
